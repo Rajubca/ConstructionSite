@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Anand Construction Website
+
+A modern, responsive construction company website built with Next.js, Prisma, and Tailwind CSS. This project is designed to showcase construction services (Demolition, Plaster, Plumbing, etc.) and a rich portfolio of past projects.
+
+## Features
+
+-   **Public Pages**:
+    -   **Home**: Hero section, featured services, and call-to-action.
+    -   **Services**: detailed list of modular construction services.
+    -   **Portfolio**: Gallery of project images and embedded videos (YouTube).
+    -   **Contact**: Contact form and company details.
+-   **Admin Dashboard**:
+    -   Secure login authentication.
+    -   Manage Services: Add, edit, delete services.
+    -   Manage Portfolio: Upload project images and videos.
+-   **Tech Stack**:
+    -   **Frontend**: Next.js 14 (App Router), React, Tailwind CSS.
+    -   **Backend**: Next.js API Routes / Server Actions.
+    -   **Database**: SQLite (via Prisma ORM).
+    -   **Authentication**: NextAuth.js.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-   Node.js 18+ installed.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/construction-website.git
+    cd construction-website
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-## Learn More
+3.  Set up the environment variables:
+    Create a `.env` file in the root directory:
+    ```bash
+    DATABASE_URL="file:./dev.db"
+    AUTH_SECRET="your-generated-secret-key" # Generate using openssl rand -base64 32
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+4.  Initialize the database:
+    ```bash
+    npx prisma migrate dev --name init
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5.  Seed the database (Optional):
+    ```bash
+    npx tsx prisma/seed.ts
+    ```
+    *This creates a default admin user:*
+    -   **Email**: admin@example.com
+    -   **Password**: admin123
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+6.  Run the development server:
+    ```bash
+    npm run dev &
+    ```
 
-## Deploy on Vercel
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Admin Access
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Navigate to `/login` to access the admin dashboard. Use the credentials created in the seeding step.
+
+## Deployment
+
+This project can be easily deployed to Vercel or any Node.js hosting provider. Ensure you set the environment variables in your deployment settings. Note that SQLite is a file-based database; for production scaling, consider switching the Prisma provider to PostgreSQL (e.g., Neon, Supabase).
+
+## License
+
+MIT
