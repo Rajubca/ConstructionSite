@@ -1,7 +1,7 @@
 'use client'
 
 import { createProject } from "@/app/actions"
-import { Button } from "@/components/ui/Button"
+import { SubmitButton } from "@/components/ui/SubmitButton"
 import { ImageUpload } from "@/components/ui/ImageUpload"
 import { useFormState } from "react-dom"
 
@@ -41,7 +41,7 @@ export function ProjectForm() {
         </div>
       </div>
       <ImageUpload name="imageUrl" label="Project Image (Optional if Video provided)" />
-      <Button>Add Project</Button>
+      <SubmitButton>Add Project</SubmitButton>
     </form>
   )
 }

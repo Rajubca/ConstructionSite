@@ -1,7 +1,7 @@
 'use client'
 
 import { createService } from "@/app/actions"
-import { Button } from "@/components/ui/Button"
+import { SubmitButton } from "@/components/ui/SubmitButton"
 import { ImageUpload } from "@/components/ui/ImageUpload"
 import { useFormState } from "react-dom"
 
@@ -26,7 +26,7 @@ export function ServiceForm() {
         </div>
       </div>
       <ImageUpload name="imageUrl" label="Service Image" />
-      <Button>Add Service</Button>
+      <SubmitButton>Add Service</SubmitButton>
     </form>
   )
 }
