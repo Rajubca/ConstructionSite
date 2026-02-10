@@ -1,5 +1,5 @@
 import { signIn } from '@/auth'
-import { Button } from '@/components/ui/Button'
+import { SubmitButton } from '@/components/ui/SubmitButton'
 
 export const metadata = {
   title: "Admin Login",
@@ -37,7 +37,7 @@ export default function Login() {
               className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
             />
           </div>
-          <Button className="w-full h-12 text-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">Sign In</Button>
+          <SubmitButton className="w-full h-12 text-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">Sign In</SubmitButton>
         </form>
       </div>
     </div>
