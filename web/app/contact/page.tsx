@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/Button";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { ContactForm } from "@/components/ContactForm";
 
 export const metadata = {
   title: "Contact Us - Anand Construction",
@@ -7,53 +8,51 @@ export const metadata = {
 
 export default function Contact() {
   return (
-    <div className="container mx-auto px-4 py-16">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
+    <div className="bg-[var(--background)] min-h-screen py-16 overflow-hidden">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm mb-2 block">Get In Touch</span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--foreground)]">Contact Us</h1>
+          <p className="text-[var(--muted-foreground)] text-lg max-w-2xl mx-auto">
+            We are here to answer any questions you may have about our construction services. Reach out to us and we'll respond as soon as we can.
+          </p>
+        </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-12">
-           <div className="space-y-8">
-             <div>
-               <h2 className="text-2xl font-bold mb-4">Our Office</h2>
-               <address className="not-italic text-slate-600 text-lg">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+           <AnimatedSection direction="left" className="space-y-8">
+             <div className="bg-[var(--card)] p-8 rounded-xl border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow">
+               <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">Our Office</h2>
+               <address className="not-italic text-[var(--muted-foreground)] text-lg leading-relaxed">
                  C23, Gangdev Nagar<br />
                  Anand, Gujarat<br />
                  India
                </address>
              </div>
 
-             <div>
-               <h2 className="text-2xl font-bold mb-4">Contact Info</h2>
-               <p className="text-slate-600 text-lg">
-                 Phone: <a href="tel:+919876543210" className="hover:text-amber-600 transition-colors">+91 98765 43210</a><br />
-                 Email: <a href="mailto:info@example.com" className="hover:text-amber-600 transition-colors">info@example.com</a>
+             <div className="bg-[var(--card)] p-8 rounded-xl border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow">
+               <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">Contact Info</h2>
+               <div className="space-y-3 text-lg">
+                 <p className="flex items-center gap-3">
+                   <span className="w-8 h-8 rounded-full bg-[var(--primary)]/10 flex items-center justify-center text-[var(--primary)]">📞</span>
+                   <a href="tel:+919876543210" className="hover:text-[var(--primary)] transition-colors">+91 98765 43210</a>
+                 </p>
+                 <p className="flex items-center gap-3">
+                   <span className="w-8 h-8 rounded-full bg-[var(--primary)]/10 flex items-center justify-center text-[var(--primary)]">✉️</span>
+                   <a href="mailto:info@example.com" className="hover:text-[var(--primary)] transition-colors">info@example.com</a>
+                 </p>
+               </div>
+             </div>
+
+             <div className="p-6 bg-[var(--primary)]/10 border border-[var(--primary)]/20 rounded-xl relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-16 h-16 bg-[var(--primary)]/10 rounded-full blur-xl -mr-8 -mt-8" />
+               <p className="font-bold text-[var(--primary)] text-lg flex items-center gap-2">
+                 ⚠️ Note: We work with material only.
                </p>
+               <p className="text-[var(--muted-foreground)] mt-2 text-sm font-medium">This ensures quality and durability for all our projects.</p>
              </div>
+           </AnimatedSection>
 
-             <div className="p-6 bg-amber-50 border border-amber-200 rounded-lg">
-               <p className="font-bold text-amber-800 text-lg">Note: We work with material only.</p>
-               <p className="text-amber-700 mt-2">This ensures quality and durability for all our projects.</p>
-             </div>
-           </div>
-
-           <div className="bg-white p-8 border border-slate-200 rounded-xl shadow-sm">
-             <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
-             <form className="space-y-4">
-               <div>
-                 <label className="block text-sm font-medium mb-1 text-slate-700">Name</label>
-                 <input type="text" className="w-full rounded-md border border-slate-300 p-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all" placeholder="Your Name" />
-               </div>
-               <div>
-                 <label className="block text-sm font-medium mb-1 text-slate-700">Phone</label>
-                 <input type="tel" className="w-full rounded-md border border-slate-300 p-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all" placeholder="Your Phone Number" />
-               </div>
-               <div>
-                 <label className="block text-sm font-medium mb-1 text-slate-700">Message</label>
-                 <textarea rows={4} className="w-full rounded-md border border-slate-300 p-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all" placeholder="Tell us about your project..."></textarea>
-               </div>
-               <Button type="button" className="w-full h-12 text-lg">Send Message</Button>
-             </form>
-           </div>
+           <ContactForm />
         </div>
       </div>
     </div>

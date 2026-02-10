@@ -1,68 +1,88 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { prisma } from "@/lib/prisma";
+import { HeroSection } from "@/components/layout/HeroSection";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { ServiceList } from "@/components/ServiceList";
 
 export default async function Home() {
   const services = await prisma.service.findMany({ take: 3 });
 
   return (
-    <div className="flex flex-col gap-16 pb-16">
+    <div className="flex flex-col gap-0 pb-0 bg-[var(--background)] overflow-x-hidden">
       {/* Hero */}
-      <section className="relative h-[600px] flex items-center justify-center bg-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        {/* Placeholder for hero image */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
+      <HeroSection />
 
-        <div className="relative z-20 container mx-auto px-4 text-center space-y-6">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-            Building Dreams in <span className="text-amber-500">Anand</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto">
-            Professional construction services including demolition, plastering, and plumbing. Quality work with premium materials.
-          </p>
-          <div className="flex gap-4 justify-center pt-4">
-            <Link href="/contact">
-              <Button size="lg">Get a Quote</Button>
+      {/* Services Preview */}
+      <section className="py-24 px-4 bg-[var(--muted)]/30 relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
+
+        <div className="container mx-auto max-w-6xl">
+          <AnimatedSection className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm">What We Do</span>
+            <h2 className="text-4xl font-bold tracking-tight text-[var(--foreground)]">Exceptional Services</h2>
+            <p className="text-lg text-[var(--muted-foreground)] leading-relaxed">
+              We offer a modular approach to construction. Choose exactly what you need, executed with precision.
+            </p>
+          </AnimatedSection>
+
+          <ServiceList services={services} />
+
+          <AnimatedSection delay={0.4} className="text-center mt-16">
+            <Link href="/services">
+              <Button variant="secondary" size="lg" className="rounded-full px-8 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+                View All Services
+              </Button>
             </Link>
-            <Link href="/portfolio">
-              <Button variant="outline" size="lg" className="text-white border-white hover:bg-white/10">View Our Work</Button>
-            </Link>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Services</h2>
-          <p className="text-slate-600">We offer a modular approach to construction. Choose exactly what you need.</p>
-        </div>
+      {/* Why Choose Us / Features */}
+      <section className="py-24 px-4 bg-[var(--secondary)] text-[var(--secondary-foreground)] relative overflow-hidden">
+         {/* Abstract shapes */}
+         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[var(--primary)]/10 to-transparent skew-x-12 translate-x-1/2 pointer-events-none" />
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div key={service.id} className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-              <p className="text-slate-600 mb-4">{service.description}</p>
-              <Link href="/services" className="text-amber-600 font-medium hover:underline">Learn more &rarr;</Link>
-            </div>
-          ))}
-        </div>
-        <div className="text-center mt-12">
-          <Link href="/services">
-            <Button variant="secondary">View All Services</Button>
-          </Link>
-        </div>
+         <div className="container mx-auto max-w-6xl relative z-10 grid md:grid-cols-2 gap-16 items-center">
+            <AnimatedSection direction="left">
+               <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                 Quality Construction <br/> Without Compromise
+               </h2>
+               <p className="text-[var(--muted-foreground)] text-lg mb-8 leading-relaxed">
+                 We believe in transparency and efficiency. By working with material only, we ensure that every brick laid and every pipe fitted meets the highest standards of safety and durability.
+               </p>
+               <ul className="space-y-4">
+                 {['Expert Craftsmanship', 'Timely Completion', 'Premium Materials', 'Safety First'].map((item) => (
+                   <li key={item} className="flex items-center gap-3 text-lg font-medium">
+                     <span className="w-6 h-6 rounded-full bg-[var(--primary)] flex items-center justify-center text-[var(--secondary)] text-xs font-bold">✓</span>
+                     {item}
+                   </li>
+                 ))}
+               </ul>
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+               <div className="relative rounded-lg overflow-hidden shadow-2xl border-4 border-[var(--primary)]/20 group">
+                 <div className="aspect-square bg-slate-800 bg-[url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931&auto=format&fit=crop')] bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--secondary)] via-transparent to-transparent opacity-60" />
+               </div>
+            </AnimatedSection>
+         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-amber-500 py-16 text-white">
-        <div className="container mx-auto px-4 text-center">
-           <h2 className="text-3xl font-bold mb-4">Ready to start your project?</h2>
-           <p className="text-lg mb-8 opacity-90">We work with material only to ensure the highest quality standards.</p>
+      <section className="py-24 bg-[var(--primary)] text-[var(--primary-foreground)] relative overflow-hidden">
+        {/* Pattern overlay if needed */}
+        <AnimatedSection className="container mx-auto px-4 text-center relative z-10">
+           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to start your project?</h2>
+           <p className="text-xl md:text-2xl mb-10 opacity-90 max-w-2xl mx-auto font-light">
+             Contact us today for a free consultation and quote. Let's build something great together.
+           </p>
            <Link href="/contact">
-             <Button size="lg" className="bg-white text-amber-600 hover:bg-slate-100">Contact Us Now</Button>
+             <Button size="lg" className="bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--secondary)] hover:text-white border-none text-lg px-10 py-6 h-auto shadow-2xl hover:shadow-none hover:scale-105 transition-all duration-300">
+               Contact Us Now
+             </Button>
            </Link>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );

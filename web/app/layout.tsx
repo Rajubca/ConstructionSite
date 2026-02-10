@@ -4,7 +4,10 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Anand Construction Company",
@@ -18,8 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <div className="flex flex-col min-h-screen bg-background text-foreground">
           <Navbar />
           <main className="flex-1">
             {children}

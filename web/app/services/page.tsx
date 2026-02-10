@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import { ServiceList } from "@/components/ServiceList";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 export const metadata = {
   title: "Services - Anand Construction",
@@ -9,30 +11,17 @@ export default async function Services() {
   const services = await prisma.service.findMany();
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-8 text-center">Our Services</h1>
-      <p className="text-center text-slate-600 max-w-2xl mx-auto mb-12">
-        We provide a wide range of construction services. Each service is executed with precision and high-quality materials.
-      </p>
+    <div className="bg-[var(--background)] min-h-screen py-16">
+      <div className="container mx-auto px-4">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-[var(--primary)] font-semibold tracking-wider uppercase text-sm mb-2 block">Our Expertise</span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--foreground)]">Our Services</h1>
+          <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">
+            We provide a wide range of construction services. Each service is executed with precision and high-quality materials.
+          </p>
+        </AnimatedSection>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service) => (
-          <div key={service.id} className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
-            {service.imageUrl ? (
-              <div className="h-48 bg-slate-100 overflow-hidden relative">
-                <img src={service.imageUrl} alt={service.title} className="w-full h-full object-cover" />
-              </div>
-            ) : (
-               <div className="h-48 bg-slate-100 flex items-center justify-center text-slate-400">
-                 No Image
-               </div>
-            )}
-            <div className="p-6 flex-1">
-              <h2 className="text-2xl font-bold mb-3">{service.title}</h2>
-              <p className="text-slate-600">{service.description}</p>
-            </div>
-          </div>
-        ))}
+        <ServiceList services={services} />
       </div>
     </div>
   );
